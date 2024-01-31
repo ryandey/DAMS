@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Admin
+model Admin {
+  id String @id @default(cuid())
+  email String @unique
+  name String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  events DisasterEvent[]
+}
+
+model Donor {
+  id String @id @default(cuid())
+  email String @unique
+  name String?
+  company String?
+  address String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Recipient {
+  id String @id @default(cuid())
+  email String @unique
+  phone String
+  name String?
+  company String?
+  address String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DisasterEvent {
+  id String @id @default(cuid())
+  adminId String
+  profile DisasterProfile?
+  location String
+  beginDate DateTime
+  endDate DateTime?
+  contactCenterName String?
+  contactCenterPhone String?
+  contactCenterAddress String?
+  // TODO: Add categories of natural disasters
+  // TODO: Add array of required items/help/assistance (and create its own object)
+  expired Boolean @default(false)
+  createdBy Admin @relation(fields: [adminId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DisasterProfile {
+  id String @id @default(cuid())
+  title String?
+  published Boolean @default(false)
+  slug String?
+  content String?
+  disaster DisasterEvent @relation(fields: [disasterId], references: [id])
+  disasterId String @unique
+}
