@@ -3,7 +3,8 @@ import "./globals.css"
 
 import { Inter } from "next/font/google"
 import { getServerSession } from "next-auth"
-import SessionProvider from "./components/SessionProvider"
+import SessionProvider from "@/components/SessionProvider"
+import Header from "@/components/ui/Header"
 import { ChakraProvider } from "@chakra-ui/react"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -26,6 +27,7 @@ export default async function RootLayout({
         <SessionProvider session={session}>
           <ChakraProvider>
             <main className="mx-auto max-w-5xl text-2xl flex gap-2">
+              <Header />
               {children}
             </main>
           </ChakraProvider>

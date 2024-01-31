@@ -1,9 +1,14 @@
 import NextAuth from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import Credentials from "next-auth/providers/credentials"
+import Github from "next-auth/providers/github"
 
 export const authOptions = {
   providers: [
-    CredentialsProvider({
+    Github({
+      clientId: process.env.GITHUB_ID ?? "",
+      clientSecret: process.env.GITHUB_SECRET ?? "",
+    }),
+    Credentials({
       name: "Crentials",
       credentials: {
         email: {
