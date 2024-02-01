@@ -4,6 +4,7 @@ import { authOptions } from "./api/auth/[...nextauth]/route"
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
+  console.log(session?.user)
 
   return (
     <Container className="p-4 text-center">
