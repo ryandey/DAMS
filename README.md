@@ -2,14 +2,33 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, install all the required packages:
+
+```bash
+yarn
+```
+
+You'll need to populate your own .env variables, using the following as a baseline:
+
+```
+DATABASE_URL="your postgresql database url"
+
+# Homepage of the application
+NEXTAUTH_URL="http://localhost:3000"
+
+# Secret phrase to use in hashing any information. Can be anything you want, but I recommend using OpenSSL to genererate a lengthy string (like 128 characters in length).
+NEXTAUTH_SECRET=""
+
+# You'll need to create a new OAuth Application within your GitHub account settings. Then populate the following fields with the corresponding values.
+GITHUB_ID=""
+GITHUB_SECRET=""
+
+```
+
+Next, run the development server:
 
 ```bash
 yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
