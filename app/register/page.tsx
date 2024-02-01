@@ -1,6 +1,6 @@
-import RegisterForm from "@/components/forms/register/RegisterForm"
+import RegisterForm from "@/app/register/form"
 
-export default function Register() {
+export default async function Register() {
   return (
     <>
       <RegisterForm />
