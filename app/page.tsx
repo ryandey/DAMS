@@ -1,8 +1,9 @@
 import { getServerSession } from "next-auth"
 import { Container, Heading, Text } from "@chakra-ui/react"
+import { authOptions } from "./api/auth/[...nextauth]/route"
 
 export default async function Home() {
-  const session = await getServerSession()
+  const session = await getServerSession(authOptions)
 
   return (
     <Container className="p-4 text-center">
