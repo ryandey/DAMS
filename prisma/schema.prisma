@@ -48,13 +48,14 @@ model verificationToken {
   @@unique([identifier, token])
 }
 
-// User (Admin)
+// User
 model user {
   id            String          @id @default(cuid())
   roles         String          @default("user")
   name          String?
   email         String?         @unique
   emailVerified DateTime?
+  password      String?
   image         String?
   phone         String?
   company       String?
